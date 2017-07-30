@@ -58,6 +58,9 @@ namespace PrintStockCheck
                 {
                     //TO DO LOGIC EXTRAPOLATE FROM SKU AND CYCLE THROUGH ALL FILES
                     Console.WriteLine("NOT A MATCH");
+                    if (currSku.Contains(currDirFile) && !currSku.Contains("jpg"))
+                        //THIS MEANS ITS A VALID MATCH, SEND TO FUNCTION TO PROCESS EXCEL FILE
+                        Console.WriteLine("BITCH BETTA HAVE MY HONEY");
                 }
                 
 
