@@ -13,7 +13,11 @@ namespace PrintStockCheck
 {
     public partial class stockCheckMain : Form
     {
-        String fileLocation = "";
+        static string imgDir = "C:\\Test";
+        string fileLocation = "";
+        int currImg = 0;
+        string currSku = "5a8utyre";
+        string[] images = Directory.GetFiles(imgDir, "*.jpg");
 
         public stockCheckMain()
         {
@@ -38,14 +42,16 @@ namespace PrintStockCheck
 
         private void stockCheckMain_Load(object sender, EventArgs e)
         {
+            checkSkuMatch();
+ 
+        }
 
-            String currSku = "5a8utyre";
-            String[] images = Directory.GetFiles("C:\\Users\\Tyler PC\\Downloads", "*.jpg");
-            
-
-            if (images.Length > 0)
+        private void checkSkuMatch()
+        {
+            if (images.Length > 0 && currImg < images.Length)
             {
-                String currDirFile = Path.GetFileNameWithoutExtension(images[0]);
+
+                String currDirFile = Path.GetFileNameWithoutExtension(images[currImg]);
                 Console.WriteLine(currDirFile);
 
 
@@ -57,15 +63,22 @@ namespace PrintStockCheck
                 else
                 {
                     //TO DO LOGIC EXTRAPOLATE FROM SKU AND CYCLE THROUGH ALL FILES
-                    Console.WriteLine("NOT A MATCH");
-                    if (currSku.Contains(currDirFile) && !currSku.Contains("jpg"))
-                        //THIS MEANS ITS A VALID MATCH, SEND TO FUNCTION TO PROCESS EXCEL FILE
+                    Console.WriteLine("NOT EXACT MATCH");
+                    //Checking that current Excel sku contains the current directory file and that the directory file isn't a small thumbnail image
+                    if (currSku.Contains(currDirFile) && !currDirFile.Contains("jpg"))
+                    {
+                        //THIS MEANS ITS A VALID MATCH, SEND TO FUNCTION TO PROCESS EXCEL
                         Console.WriteLine("BITCH BETTA HAVE MY HONEY");
+                    }
+                    else
+                    {
+                        currImg++;
+                        checkSkuMatch();
+                    }
                 }
-                
-
             }
-            
+            else
+                Console.WriteLine("No .JPG files in directory: " + imgDir);
         }
     }
 }
