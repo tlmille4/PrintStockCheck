@@ -10,31 +10,30 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Reflection;
 using Microsoft.Office.Interop.Excel;
+using System.Text.RegularExpressions;
+using System.Collections;
 
 namespace PrintStockCheck
 {
+   
+    
     public partial class stockCheckMain : Form
     {
-        static string imgDir = "C:\\Users\\Tyler PC\\Dropbox\\Camera Uploads";
+        //Default image director on external drive
+        public static string imgDir = @"H:\Images\Scanned";
+
+        
         string fileLocation = "";
-        int currImg = 0;
-        string currSku = "Pareto Chart Information";
-        
-        
-        //string[] images = Directory.GetFiles(imgDir, "*.jpg");
 
-        
-     
-
-        //var files = Directory.GetFiles("C:\\path", "*.*", SearchOption.AllDirectories)
-        //            .Where(s => s.EndsWith(".mp3") || s.EndsWith(".jpg"));
 
         public stockCheckMain()
         {
+            //GUI preferences
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             InitializeComponent();
-            openFileDialog.Filter = "CSV Files (*.csv)| *.csv";
-            openFileDialog.Filter = "Excel Files (*.xls)| *.xls";
-            openFileDialog.Filter = "Excel Files (*.xlsx)| *.xlsx";
+            openFileDialog.Filter = "Excel/CSV Files (*.csv, *.xls,*.xlsx)| *.csv; *.xls; *.xlsx";
 
         }
 
@@ -58,18 +57,20 @@ namespace PrintStockCheck
         private void stockCheckMain_Load(object sender, EventArgs e)
         {
             
- 
+            lblSearchDirectory.Text = imgDir;
+           
         }
 
         private void checkSkuMatch()
         {
             Microsoft.Office.Interop.Excel.Application xlApp = new Microsoft.Office.Interop.Excel.Application();
-            xlApp.Visible = true;
+            
 
 
             try
             {
                 Workbook wb = xlApp.Workbooks.Open(fileLocation);
+                xlApp.Visible = false;
                 // Workbook wb = xlApp.Workbooks.Add(XlWBATemplate.xlWBATWorksheet);
                 Worksheet ws = (Worksheet)wb.Worksheets[1];
                 Range usedRange = ws.UsedRange;
@@ -82,33 +83,45 @@ namespace PrintStockCheck
                 progressBar1.Maximum = totalRows;
 
                 lblStatus.Text = "Scanning Excel Worksheet .. Please Wait .. ";
+
+                
                 foreach (Range row in usedRange.Rows)
                 {
-
-
-                    string skuData = row.Cells[1, 1].Value.ToString();
-
-
-                    //EXTRAPOLATE SKU
-                    string[] tempSku = skuData.Split('-');
-
-                    if (tempSku.Length >= 2)
+                    if (ws.Cells[currRow, 6].Value == null)
                     {
-                        string searchSku = tempSku[1];
-                        Console.WriteLine(searchSku);
-                        string[] images = Directory.GetFiles(imgDir, "*" + searchSku + "*.*");
-                        Console.WriteLine("Img Length: " + images.Length);
-                        if (images.Length > 0)
-                            checkDirectory(currRow, ws, row, images, searchSku);
-                        else
-                            Console.WriteLine("NOT IN FILE SYSTEM");
 
+
+                        string skuData = row.Cells[1, 1].Value.ToString();
+                        //EXTRAPOLATE SKU
+                        try
+                        {
+                            string[] tempSku = skuData.Split('-');
+                            if (tempSku.Length >= 2)
+                            {
+                                string searchSku = tempSku[1].ToUpper();
+                                //Use regular expression to remove whitespace from sku
+                                Regex.Replace(searchSku, @"\s+", "");
+                                Console.WriteLine(searchSku);
+                                string[] images = Directory.GetFiles(imgDir, "*" + searchSku + "*.*");
+                                Console.WriteLine("Img Length: " + images.Length);
+                                if (images.Length > 0)
+                                    checkDirectory(currRow, ws, row, images, searchSku);
+                                else
+                                    Console.WriteLine("NOT IN FILE SYSTEM");
+
+                            }
+                        }
+                        catch(Exception ex)
+                        {
+                            MessageBox.Show("There was an error extrapolating SKU data from Cell A" + currRow);
+                            row.Interior.Color = System.Drawing.Color.Red;
+
+                        }
                     }
+
+                    //Update progress bar data
                     this.progressBar1.Value = currRow;
                     this.progressBar1.Update();
-
-
-
 
                     percentComplete = (double)currRow / totalRows * 100;
 
@@ -118,28 +131,31 @@ namespace PrintStockCheck
 
                 }
 
+                //Tell user scan is complete
                 lblStatus.ForeColor = Color.Green;
                 lblStatus.Text = "Scan Complete";
+                
+                MessageBox.Show("Scan Complete! All " + currRow + " row(s) of file '" + fileLocation + "' have been searched.", "Stock Search Complete");
 
+                //Show excel file to user
+                
+                xlApp.Visible = true;
+                this.Close();
             }
             catch (Exception ex)
             {
+                //Tell user issue with excel file
                 MessageBox.Show("Whoops! The file you're trying to use is either non-existant or invalid. Please try another file. \n Error: " + ex);
-
             }
-
-
-
         }
 
         public void checkDirectory(int currRow, Worksheet ws, Range row, string[] images, string skuData)
         {
             string currDirFile;
-           // string indata;
 
             for (int i = 0; i < images.Length; i++)
             {
-                currDirFile = Path.GetFileNameWithoutExtension(images[i]);
+                currDirFile = Path.GetFileNameWithoutExtension(images[i]).ToUpper();
                 //Console.WriteLine(currDirFile);
                 
                 //Console.WriteLine(indata);
@@ -148,6 +164,7 @@ namespace PrintStockCheck
                     //TO DO LOGIC IN EXCEL
                     Console.WriteLine("EXACT MATCH");
                     ws.Cells[currRow, 6] = "Scanned";
+                    break;
                    // Console.WriteLine(indata);
                 }
                 else
@@ -161,114 +178,44 @@ namespace PrintStockCheck
                         Console.WriteLine("match");
                         ws.Cells[currRow, 6] = "Possible Match";
 
+                    }
+                    else if (skuData.All(c => Char.IsLetter(c)))
+                    {
+                        
+                        Console.WriteLine("Possible Sku Error");
+                        ws.Cells[currRow, 6] = "ERRONIOUS SKU";
 
-
-                        // Console.WriteLine(indata);
                     }
                     else
-                    {
-                        Console.WriteLine("NOT  MATCH");
-
-                    }
+                        Console.WriteLine("NOT  MATCH"); 
                 }
             }
 
-            /*
-            if (images.Length > 0 && currImg < images.Length)
-            {
-
-                
-                String currDirFile = Path.GetFileNameWithoutExtension(images[currImg]);
-                Console.WriteLine(currDirFile);
-                string indata = row.Cells[1, 1].Value.ToString();
-                Console.WriteLine(indata);
-                if (indata == currDirFile)
-                {
-                    //TO DO LOGIC IN EXCEL
-                    Console.WriteLine("IT WAS A MATCH");
-                    Console.WriteLine(indata);
-                }
-                else
-                {
-                    //TO DO LOGIC EXTRAPOLATE FROM SKU AND CYCLE THROUGH ALL FILES
-
-                    //Checking that current Excel sku contains the current directory file and that the directory file isn't a small thumbnail image
-                    if (currSku.Contains(currDirFile) && !currDirFile.Contains("jpg"))
-                    {
-                        //THIS MEANS ITS A VALID MATCH, SEND TO FUNCTION TO PROCESS EXCEL
-                        Console.WriteLine("match");
-
-                        Console.WriteLine(indata);
-                    }
-                    else
-                    {
-                        Console.WriteLine("NOT  MATCH");
-                        currImg++;
-                        checkDirectory(row);
-                    }
-                }
-            }
-            else
-                Console.WriteLine("End of directory search");
-                */
         }
 
-        public void MarkExcelFile()
-        {
-            Microsoft.Office.Interop.Excel.Application xlApp = new Microsoft.Office.Interop.Excel.Application();
-
-            if (xlApp == null)
-            {
-                Console.WriteLine("EXCEL could not be started. Check that your office installation and project references are correct.");
-                return;
-            }
-            xlApp.Visible = true;
-
-            Workbook wb = xlApp.Workbooks.Open(fileLocation);
-           // Workbook wb = xlApp.Workbooks.Add(XlWBATemplate.xlWBATWorksheet);
-            Worksheet ws = (Worksheet)wb.Worksheets[1];
-            Range usedRange = ws.UsedRange;
-
-            foreach (Range row in usedRange.Rows)
-            {
-                    string indata = row.Cells[1,1].Value.ToString();
-                   // Console.WriteLine(indata);
-            }
-
-
-
-            if (ws == null)
-            {
-                Console.WriteLine("Worksheet could not be created. Check that your office installation and project references are correct.");
-            }
-
-            // Select the Excel cells, in the range c1 to c7 in the worksheet.
-            Range aRange = ws.get_Range("C1", "C7");
-
-            if (aRange == null)
-            {
-                Console.WriteLine("Could not get a range. Check to be sure you have the correct versions of the office DLLs.");
-            }
-
-            // Fill the cells in the C1 to C7 range of the worksheet with the number 6.
-            Object[] args = new Object[1];
-            args[0] = 6;
-            aRange.GetType().InvokeMember("Value", BindingFlags.SetProperty, null, aRange, args);
-
-            // Change the cells in the C1 to C7 range of the worksheet to the number 8.
-            aRange.Value2 = 8;
-        }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            try
-            {
-                checkSkuMatch();
-            }
-            catch(FileNotFoundException ex)
-            {
-                MessageBox.Show("Whoops! The file you're trying to use is either non-existant or invalid. Please try another file. \n Error: " + ex);
+            bool validFile = false;
+            string file = txtFilePath.Text.ToUpper();
+            Console.WriteLine(file);
 
+            if (file.EndsWith(".CSV") || file.EndsWith(".XLSX") || file.EndsWith(".XLS"))
+                validFile = true;
+
+            if (file == "" || validFile == false)
+                MessageBox.Show("Whoops! No excel file was detected. Please choose a valid CSV or Excel file to continue.");
+            else
+            {
+                try
+                {
+                    checkSkuMatch();
+                }
+                catch (FileNotFoundException ex)
+                {
+                    MessageBox.Show("Whoops! Something not-so-great has occured. Use the following as reference to this error: \n Error: " + ex);
+
+                }
             }
             
            
@@ -279,5 +226,51 @@ namespace PrintStockCheck
 
         }
 
+        private void emailWithQuestionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void exitToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void mnuChangeSearch_Click(object sender, EventArgs e)
+        {
+            //changeSearchDirectory form = new changeSearchDirectory();
+            //form.Show();
+            //
+            //lblSearchDirectory.Text = imgDir;
+
+            FolderBrowserDialog ofDialog = new FolderBrowserDialog();
+
+
+            if (ofDialog.ShowDialog() == DialogResult.OK)
+            {
+                //txtDirectoryName.Text = ofDialog.SelectedPath;
+                //newDir = ofDialog.SelectedPath;
+                imgDir = ofDialog.SelectedPath;
+                lblSearchDirectory.Text = imgDir;
+                this.Refresh();
+                Console.WriteLine(stockCheckMain.imgDir);
+
+
+            }
+
+        }
+
+
+
+        private void lblSearchDirectory_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AboutBox about = new AboutBox();
+            about.Show();
+        }
     }
   }

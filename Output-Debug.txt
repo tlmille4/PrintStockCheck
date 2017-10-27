@@ -1,0 +1,72 @@
+﻿'PrintStockCheck.vshost.exe' (CLR v4.0.30319: PrintStockCheck.vshost.exe): Loaded 'C:\WINDOWS\Microsoft.Net\assembly\GAC_32\mscorlib\v4.0_4.0.0.0__b77a5c561934e089\mscorlib.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'PrintStockCheck.vshost.exe' (CLR v4.0.30319: PrintStockCheck.vshost.exe): Loaded 'C:\WINDOWS\assembly\GAC_MSIL\Microsoft.VisualStudio.HostingProcess.Utilities\14.0.0.0__b03f5f7f11d50a3a\Microsoft.VisualStudio.HostingProcess.Utilities.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'PrintStockCheck.vshost.exe' (CLR v4.0.30319: PrintStockCheck.vshost.exe): Loaded 'C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Windows.Forms\v4.0_4.0.0.0__b77a5c561934e089\System.Windows.Forms.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'PrintStockCheck.vshost.exe' (CLR v4.0.30319: PrintStockCheck.vshost.exe): Loaded 'C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System\v4.0_4.0.0.0__b77a5c561934e089\System.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'PrintStockCheck.vshost.exe' (CLR v4.0.30319: PrintStockCheck.vshost.exe): Loaded 'C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Drawing\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Drawing.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'PrintStockCheck.vshost.exe' (CLR v4.0.30319: PrintStockCheck.vshost.exe): Loaded 'C:\WINDOWS\assembly\GAC_MSIL\Microsoft.VisualStudio.HostingProcess.Utilities.Sync\14.0.0.0__b03f5f7f11d50a3a\Microsoft.VisualStudio.HostingProcess.Utilities.Sync.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'PrintStockCheck.vshost.exe' (CLR v4.0.30319: PrintStockCheck.vshost.exe): Loaded 'C:\WINDOWS\assembly\GAC_MSIL\Microsoft.VisualStudio.Debugger.Runtime\14.0.0.0__b03f5f7f11d50a3a\Microsoft.VisualStudio.Debugger.Runtime.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'PrintStockCheck.vshost.exe' (CLR v4.0.30319: PrintStockCheck.vshost.exe): Loaded 'C:\Users\Tyler PC\documents\visual studio 2015\Projects\PrintStockCheck\PrintStockCheck\bin\Debug\PrintStockCheck.vshost.exe'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'PrintStockCheck.vshost.exe' (CLR v4.0.30319: PrintStockCheck.vshost.exe): Loaded 'C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Core\v4.0_4.0.0.0__b77a5c561934e089\System.Core.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'PrintStockCheck.vshost.exe' (CLR v4.0.30319: PrintStockCheck.vshost.exe): Loaded 'C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Xml.Linq\v4.0_4.0.0.0__b77a5c561934e089\System.Xml.Linq.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'PrintStockCheck.vshost.exe' (CLR v4.0.30319: PrintStockCheck.vshost.exe): Loaded 'C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Data.DataSetExtensions\v4.0_4.0.0.0__b77a5c561934e089\System.Data.DataSetExtensions.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'PrintStockCheck.vshost.exe' (CLR v4.0.30319: PrintStockCheck.vshost.exe): Loaded 'C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\Microsoft.CSharp\v4.0_4.0.0.0__b03f5f7f11d50a3a\Microsoft.CSharp.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'PrintStockCheck.vshost.exe' (CLR v4.0.30319: PrintStockCheck.vshost.exe): Loaded 'C:\WINDOWS\Microsoft.Net\assembly\GAC_32\System.Data\v4.0_4.0.0.0__b77a5c561934e089\System.Data.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'PrintStockCheck.vshost.exe' (CLR v4.0.30319: PrintStockCheck.vshost.exe): Loaded 'C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Deployment\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Deployment.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'PrintStockCheck.vshost.exe' (CLR v4.0.30319: PrintStockCheck.vshost.exe): Loaded 'C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Net.Http\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Net.Http.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'PrintStockCheck.vshost.exe' (CLR v4.0.30319: PrintStockCheck.vshost.exe): Loaded 'C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Xml\v4.0_4.0.0.0__b77a5c561934e089\System.Xml.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+The thread 0x6030 has exited with code 0 (0x0).
+The thread 0x3aa4 has exited with code 0 (0x0).
+'PrintStockCheck.vshost.exe' (CLR v4.0.30319: PrintStockCheck.vshost.exe): Loaded 'C:\Users\Tyler PC\documents\visual studio 2015\Projects\PrintStockCheck\PrintStockCheck\bin\Debug\PrintStockCheck.exe'. Symbols loaded.
+'PrintStockCheck.vshost.exe' (CLR v4.0.30319: PrintStockCheck.vshost.exe): Loaded 'C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Configuration\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Configuration.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+C:\Users\Tyler PC\Music
+C:\Users\Tyler PC\Desktop\cis355
+'PrintStockCheck.vshost.exe' (CLR v4.0.30319: PrintStockCheck.vshost.exe): Loaded 'C:\WINDOWS\assembly\GAC_MSIL\Microsoft.Office.Interop.Excel\15.0.0.0__71e9bce111e9429c\Microsoft.Office.Interop.Excel.dll'. Module was built without symbols.
+'PrintStockCheck.vshost.exe' (CLR v4.0.30319: PrintStockCheck.vshost.exe): Loaded 'C:\WINDOWS\assembly\GAC_MSIL\office\15.0.0.0__71e9bce111e9429c\office.dll'. Module was built without symbols.
+C:\USERS\TYLER PC\DOCUMENTS\TEST.XLSX
+'PrintStockCheck.vshost.exe' (CLR v4.0.30319: PrintStockCheck.vshost.exe): Loaded 'C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Dynamic\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Dynamic.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'PrintStockCheck.vshost.exe' (CLR v4.0.30319: PrintStockCheck.vshost.exe): Loaded 'Anonymously Hosted DynamicMethods Assembly'. 
+'PrintStockCheck.vshost.exe' (CLR v4.0.30319: PrintStockCheck.vshost.exe): Loaded 'C:\WINDOWS\Microsoft.Net\assembly\GAC_32\CustomMarshalers\v4.0_4.0.0.0__b03f5f7f11d50a3a\CustomMarshalers.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+Total Rows ----- 7
+'PrintStockCheck.vshost.exe' (CLR v4.0.30319: PrintStockCheck.vshost.exe): Loaded 'System.Dynamic.DynamicAssembly'. 
+RTYRTY
+Img Length: 0
+NOT IN FILE SYSTEM
+ 654 
+Img Length: 0
+NOT IN FILE SYSTEM
+IMG037
+Img Length: 0
+NOT IN FILE SYSTEM
+ NOT OPEN AT CONVIENENT HOURS
+Img Length: 0
+NOT IN FILE SYSTEM
+ SERVICES NOT IN ALL AREAS
+Img Length: 0
+NOT IN FILE SYSTEM
+ RENEWALS COST TOO MUCH MONEY
+Img Length: 0
+NOT IN FILE SYSTEM
+C:\Users\Tyler PC\Dropbox\Camera Uploads
+C:\USERS\TYLER PC\DOCUMENTS\TEST.XLSX
+Total Rows ----- 7
+RTYRTY
+Img Length: 0
+NOT IN FILE SYSTEM
+ 654 
+Img Length: 0
+NOT IN FILE SYSTEM
+IMG037
+Img Length: 1
+EXACT MATCH
+ NOT OPEN AT CONVIENENT HOURS
+Img Length: 0
+NOT IN FILE SYSTEM
+ SERVICES NOT IN ALL AREAS
+Img Length: 0
+NOT IN FILE SYSTEM
+ RENEWALS COST TOO MUCH MONEY
+Img Length: 0
+NOT IN FILE SYSTEM
+The thread 0x4df8 has exited with code 0 (0x0).
+The thread 0x5a48 has exited with code 0 (0x0).
+The program '[19660] PrintStockCheck.vshost.exe' has exited with code 0 (0x0).

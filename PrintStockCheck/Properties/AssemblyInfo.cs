@@ -5,13 +5,13 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("PrintStockCheck")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Print Stock Check")]
+[assembly: AssemblyDescription("This program checks to see if various images are scanned and stored on file using SKU information imported from a CSV/EXCEL file")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("PrintStockCheck")]
+[assembly: AssemblyCompany("Framed Art by Tilliams")]
+[assembly: AssemblyProduct("Print Stock Check")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyTrademark("Tyler Miller")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
