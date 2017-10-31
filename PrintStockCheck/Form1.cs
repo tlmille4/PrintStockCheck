@@ -64,8 +64,6 @@ namespace PrintStockCheck
         private void checkSkuMatch()
         {
             Microsoft.Office.Interop.Excel.Application xlApp = new Microsoft.Office.Interop.Excel.Application();
-            
-
 
             try
             {
@@ -90,7 +88,7 @@ namespace PrintStockCheck
                     if (ws.Cells[currRow, 6].Value == null)
                     {
 
-
+                        
                         string skuData = row.Cells[1, 1].Value.ToString();
                         //EXTRAPOLATE SKU
                         try
@@ -99,9 +97,17 @@ namespace PrintStockCheck
                             if (tempSku.Length >= 2)
                             {
                                 string searchSku = tempSku[1].ToUpper();
+
                                 //Use regular expression to remove whitespace from sku
                                 Regex.Replace(searchSku, @"\s+", "");
                                 Console.WriteLine(searchSku);
+
+                                //Putting extrapolated sku data in new column for easy ordering
+                                ws.Cells[1, 10] = "Order SKU:";
+                                ws.Cells[1, 11] = "QTY:";
+                                ws.Cells[currRow, 10] = searchSku;
+                                ws.Cells[currRow, 11] = ws.Cells[currRow, 2];
+
                                 string[] images = Directory.GetFiles(imgDir, "*" + searchSku + "*.*");
                                 Console.WriteLine("Img Length: " + images.Length);
                                 if (images.Length > 0)
@@ -155,6 +161,10 @@ namespace PrintStockCheck
 
             for (int i = 0; i < images.Length; i++)
             {
+                //Putting extrapolated sku data in new column for easy ordering
+                ws.Cells[currRow, 10] = skuData;
+                ws.Cells[currRow, 11] = ws.Cells[currRow, 2];
+
                 currDirFile = Path.GetFileNameWithoutExtension(images[i]).ToUpper();
                 //Console.WriteLine(currDirFile);
                 
@@ -164,6 +174,7 @@ namespace PrintStockCheck
                     //TO DO LOGIC IN EXCEL
                     Console.WriteLine("EXACT MATCH");
                     ws.Cells[currRow, 6] = "Scanned";
+                    
                     break;
                    // Console.WriteLine(indata);
                 }
